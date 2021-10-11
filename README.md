@@ -28,7 +28,7 @@ int main()
     ...
     t = clock() - t;
     ...
-    printf("It took me %d clicks (%f seconds).\n", (int)t, ((double)t) CLOCKS_PER_SEC);
+    printf("It took me %d clicks (%f seconds).\n", (int)t, ((double)t) / CLOCKS_PER_SEC);
     return 0;
 }
 ```
@@ -38,7 +38,15 @@ int main()
 At the start: size:0, max_size:1, capacity:1, errors:0
 At the end: size:0, max_size:16384, capacity:16384, errors:0
 inserts:10000000, erases:10000000 = 20000000 operations.
-It took me 2306 clicks (2.306000 seconds).
+It took me 324 clicks (0.314000 seconds).
+```
+<summary>The same test with std::vector</summary>
+
+```
+At the start: size:0, max_size:-1, capacity:0, errors:0
+At the end: size:0, max_size:-1, capacity:1048576, errors:0
+inserts:10000000, erases:10000000 = 20000000 operations.
+It took me 227 clicks (0.227000 seconds).
 ```
 
 ## Build

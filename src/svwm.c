@@ -145,7 +145,16 @@ void *svwm_pushback(void *ptr, void *instance)
 {
     struct svwm_head *head_tech_ptr = (struct svwm_head *)ptr;
     head_tech_ptr--;
-    ptr = svwm_insert(ptr, head_tech_ptr->size, instance);
+    if (head_tech_ptr->empty > 0)
+    {
+        char *char_tech_ptr = (char *)ptr;
+        memcpy((char_tech_ptr + (head_tech_ptr->size * head_tech_ptr->size_of_instance)), (char *)instance, head_tech_ptr->size_of_instance);
+        head_tech_ptr->size++;
+        head_tech_ptr->empty--;
+        return ptr;
+    }
+    else
+        ptr = svwm_insert(ptr, head_tech_ptr->size, instance);
     return ptr;
 }
 
