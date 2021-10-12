@@ -38,7 +38,7 @@ int main()
 At the start: size:0, max_size:1, capacity:1, errors:0
 At the end: size:0, max_size:16384, capacity:16384, errors:0
 inserts:10000000, erases:10000000 = 20000000 operations.
-It took me 324 clicks (0.314000 seconds).
+It took me 314 clicks (0.314000 seconds).
 ```
 <summary>The same test with std::vector</summary>
 

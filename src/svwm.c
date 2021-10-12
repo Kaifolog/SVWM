@@ -51,7 +51,7 @@ void *svwm_vector(int size, int size_of_instance)
         tech_ptr = malloc(((size * SVWM_FACTOR) * size_of_instance) + sizeof(struct svwm_head));
         head_tech_ptr = (struct svwm_head *)tech_ptr;
         head_tech_ptr->size = size;
-        head_tech_ptr->empty = size;
+        head_tech_ptr->empty = (size * SVWM_FACTOR) - size;
     }
     else
     {
@@ -121,7 +121,7 @@ void *svwm_insert(void *ptr, int position, void *instance)
         void *new_ptr = malloc(((head_tech_ptr->size) * SVWM_FACTOR * head_tech_ptr->size_of_instance) + sizeof(struct svwm_head));
         memcpy(new_ptr, head_tech_ptr, ((head_tech_ptr->size) * head_tech_ptr->size_of_instance) + sizeof(struct svwm_head));
         struct svwm_head *new_head_tech_ptr = (struct svwm_head *)new_ptr;
-        new_head_tech_ptr->empty = head_tech_ptr->size;
+        new_head_tech_ptr->empty = (head_tech_ptr->size * SVWM_FACTOR) - head_tech_ptr->size;
         free(head_tech_ptr);
         svwm_insert(new_head_tech_ptr + 1, position, instance);
     }
